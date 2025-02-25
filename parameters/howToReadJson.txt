@@ -1,0 +1,9 @@
+{
+  "iterationsPerGame": 10, -> Strategy X and Y play 10 games and their total payoff is calculated
+  "payoff": {
+    "11": [3, 3], -> A cooperates and B cooperates. Returns: P_A = 3, P_B = 3
+    "10": [0, 5], -> A cooperates and B deflects. Returns: P_A = 0, P_B = 5
+    "01": [5, 0], -> A deflects and B cooperates. Returns: P_A = 5, P_B = 0
+    "00": [1, 1], -> A deflects and B deflects. Returns: P_A = 1, P_B= 1
+  }
+}
