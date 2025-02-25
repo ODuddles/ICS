@@ -1,5 +1,5 @@
 """"
-Owen Duddles
+Owen Duddles 15099261
 Narek Wartanian
 This file has the functions to handle different strategy operations like
 merging two strategies or mutating strategies. As well as going from
@@ -33,5 +33,3 @@ def base_k_to_integer(array, k):
         ans += num * np.power(k, power)
         power += 1
     return int(ans)
-
-print(decimal_to_base_k(4369, 2))
