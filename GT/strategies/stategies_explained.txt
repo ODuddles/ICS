@@ -1,0 +1,47 @@
+
+Strategy #1: Allways deflect
+0
+
+Strategy #2: Allways cooperate
+2097151
+
+Strategy #3: Only cooperate when last two moves of the other were cooperate
+4369
+
+Strategy #4: Only cooperate when last two moves of the other where deflect
+34952
+
+Strategy #5: Alternate, so going 1, 0, 1, 0, 1 etc.
+61680
+
+Strategy #6: Double alternate, so going 1, 1, 0, 0, 1, 1, 0, 0, etc.
+65280
+
+Strategy #11: Tit for Tat
+21845
+
+Possibilities:
+1: cooperate
+0: deflect
+Second Previous Self, Previous Self, Second Previous Other, Previous Other:move
+0000:1
+0001:1
+0010:1
+0011:1
+0100:1
+0101:1
+0110:1
+0111:1
+1000:0
+1001:0
+1010:0
+1011:0
+1100:0
+1101:0
+1110:0
+1111:0
+----:
+-0-0:
+-0-1:
+-1-0:
+-1-1:

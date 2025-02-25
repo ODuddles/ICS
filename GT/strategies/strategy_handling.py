@@ -23,7 +23,6 @@ def decimal_to_base_k(n, k):
 
     return results
 
-
 def base_k_to_integer(array, k):
     """ Converts a given array representing a number in base k,
     back to a decimal number given a base k"""
@@ -34,3 +33,5 @@ def base_k_to_integer(array, k):
         ans += num * np.power(k, power)
         power += 1
     return int(ans)
+
+print(decimal_to_base_k(4369, 2))
