@@ -6,8 +6,10 @@ merging two strategies or mutating strategies. As well as going from
 integer representation to list representation.
 """
 import numpy as np
+import json
+# np.random.seed(232005)
 
-def decimal_to_base_k(n, k):
+def decimal_to_base_k(n:int, k:int):
     """Converts a given decimal (i.e. base-10 integer) to a list containing the
     base-k equivalant.
 
@@ -23,7 +25,7 @@ def decimal_to_base_k(n, k):
 
     return results
 
-def base_k_to_integer(array, k):
+def base_k_to_integer(array:list, k:int):
     """ Converts a given array representing a number in base k,
     back to a decimal number given a base k"""
     ans = 0
@@ -33,3 +35,25 @@ def base_k_to_integer(array, k):
         ans += num * np.power(k, power)
         power += 1
     return int(ans)
+
+def mutate(strat:int):
+    """This function adjusts a strategy strat by going to the binary form of
+    the strategy and changing a few 0's to 1's and 1's to 0's. How many of
+    these changes are made, is determined by the parameters.json file in the
+    parameters directory."""
+    list_form = decimal_to_base_k(strat, 2)
+
+    with open('/home/owen/Documents/Universiteit/Jaar 2/ComputationalScience/ICS/GT/parameters/parameters.json', 'r') as file:
+        data = json.load(file)
+
+    nr_mutations = data["mutation_factor"]
+
+    index_arr = np.random.choice(len(list_form), nr_mutations, replace=False)
+    for i in index_arr:
+        list_form[i] = (list_form[i] + 1) % 2
+    print(list_form)
+    return base_k_to_integer(list_form, 2)
+
+test = decimal_to_base_k(734342, 2)
+print(test)
+print(mutate(734342))

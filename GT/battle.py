@@ -3,7 +3,7 @@ Owen Duddles 15099261
 Narek Wartanian
 This file has the functions to handle a battle between 2 strategies.
 """
-
+import json
 import strategies.strategy_handling as strats
 
 def get_index(data):
@@ -37,8 +37,6 @@ def calculate_payoff(move1, move2, payoff_dict):
 def battle(strategy1, strategy2, rounds, verbose=False):
     """This function executes the battle between strategy 1 and strategy 2
     and returns the payoff for both strategies after the number of rounds. """
-
-    import json
 
     # Open and read the JSON file
     with open('/home/owen/Documents/Universiteit/Jaar 2/ComputationalScience/ICS/GT/parameters/parameters.json', 'r') as file:
@@ -101,7 +99,31 @@ def battle(strategy1, strategy2, rounds, verbose=False):
             print(f"Current Payoff", total_payoff_1, total_payoff_2)
             print("")
 
-
     return total_payoff_1, total_payoff_2
 
-print(battle(0, 2097151, 6))
+def tournament(poule:list, strategies:list):
+    """This function runs a tournament by letting each strategy in the poule
+    battle against all strategies in strategies. Strategies within the
+    poule don't battle each other and strategies within the strategies variable
+    also don't.
+    This function returns a list of tuples with payoff's from high to low and
+    their according strategy in the poule (the strategies list is just to
+    have a reference of the effectivity of each strategy)"""
+
+    with open('/home/owen/Documents/Universiteit/Jaar 2/ComputationalScience/ICS/GT/parameters/parameters.json', 'r') as file:
+        data = json.load(file)
+
+    rounds = data["iterationsPerGame"]
+
+    result = []
+    for strat1 in poule:
+        total_payoff = 0
+        for strat2 in strategies:
+            payoff_1, _ =  battle(strat1, strat2, rounds)
+            total_payoff += payoff_1
+        result.append((total_payoff, strat1))
+    result = sorted(result, key=lambda x: x[0], reverse=True)
+    return result
+
+print(tournament([0, 2097151, 139808, 1118464, 1973772, 2088963, 699045], [0, 2097151, 139808, 1118464, 1973772, 2088963, 699045]))
+
