@@ -11,13 +11,13 @@ Each strategy receives two lists:
 """
     Always cooperates with the opponent.
 """
-def always_coop(previous_opp: list, previous_self: list): return 1
+def always_coop(previous_opp: list, previous_self: list): return 0
 
 
 """
     Always deflect the opponent.
 """
-def always_defect(previous_opp: list, previous_self: list): return 0
+def always_defect(previous_opp: list, previous_self: list): return 1
 
 
 """
