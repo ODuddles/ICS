@@ -126,4 +126,3 @@ def tournament(poule:list, strategies:list):
     return result
 
 print(tournament([0, 2097151, 139808, 1118464, 1973772, 2088963, 699045], [0, 2097151, 139808, 1118464, 1973772, 2088963, 699045]))
-
