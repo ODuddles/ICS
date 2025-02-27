@@ -54,7 +54,7 @@ def mutate(strat:int):
     parameters directory."""
     list_form = integer_2_binary(strat, 21)
 
-    with open('/home/owen/Documents/Universiteit/Jaar 2/ComputationalScience/ICS/GT/parameters/parameters.json', 'r') as file:
+    with open('./parameters/parameters.json', 'r') as file:
         data = json.load(file)
 
     nr_mutations = data["mutation_factor"]

@@ -43,7 +43,7 @@ def battle(strategy_table, strategy_func, rounds, verbose=False):
     rounds. """
 
     # Open and read the JSON file
-    with open('/home/owen/Documents/Universiteit/Jaar 2/ComputationalScience/ICS/GT/parameters/parameters.json', 'r') as file:
+    with open('./parameters/parameters.json', 'r') as file:
         data = json.load(file)
 
     # Extracting the payoff dictionary
@@ -111,7 +111,7 @@ def tournament(poule:list, strategies:list):
     their according strategy in the poule (the strategies list is just to
     have a reference of the effectivity of each strategy)"""
 
-    with open('/home/owen/Documents/Universiteit/Jaar 2/ComputationalScience/ICS/GT/parameters/parameters.json', 'r') as file:
+    with open('./parameters/parameters.json', 'r') as file:
         data = json.load(file)
 
     rounds = data["iterationsPerGame"]
@@ -127,7 +127,7 @@ def tournament(poule:list, strategies:list):
     return result
 
 def everyone_v_everyone(strategies:list):
-    with open('/home/owen/Documents/Universiteit/Jaar 2/ComputationalScience/ICS/GT/parameters/parameters.json', 'r') as file:
+    with open('./parameters/parameters.json', 'r') as file:
         data = json.load(file)
 
     rounds = data["iterationsPerGame"]

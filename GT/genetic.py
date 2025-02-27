@@ -43,7 +43,7 @@ class GenAlgorithm():
         """Returns a list of random strategies for the start of the algorithm"""
         strats = []
 
-        with open('/home/owen/Documents/Universiteit/Jaar 2/ComputationalScience/ICS/GT/parameters/parameters.json', 'r') as file:
+        with open('./parameters/parameters.json', 'r') as file:
             data = json.load(file)
 
         n = data["pool_size"]
