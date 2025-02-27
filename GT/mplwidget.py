@@ -1,3 +1,12 @@
+""""
+Owen Duddles 15099261
+Narek Wartanian 14787148
+This file contains the logic that handles the plotting
+of the matplotlib figure in the GUI. The x-axis shows the
+current generation, while the y-axis shows us the payoff score.
+Note that only the highest scoring random strategy will be plot.
+
+"""
 from PyQt5.QtWidgets import QWidget, QVBoxLayout
 
 from matplotlib.backends.backend_qt5agg import FigureCanvas

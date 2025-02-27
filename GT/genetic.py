@@ -1,3 +1,11 @@
+""""
+Owen Duddles 15099261
+Narek Wartanian 14787148
+This file contains the GenAlgorithm class that is able to:
+create random strategies and procreate a new strategies from two
+strategies.
+
+"""
 import battle
 import json
 import strategies.strategy_handling as strats_handl

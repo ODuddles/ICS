@@ -1,6 +1,6 @@
 """"
 Owen Duddles 15099261
-Narek Wartanian
+Narek Wartanian 14787148
 This file has the functions to handle a battle between 2 strategies.
 """
 import json

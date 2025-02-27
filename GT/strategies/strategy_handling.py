@@ -1,6 +1,6 @@
 """"
 Owen Duddles 15099261
-Narek Wartanian
+Narek Wartanian 14787148
 This file has the functions to handle different strategy operations like
 merging two strategies or mutating strategies. As well as going from
 integer representation to list representation.

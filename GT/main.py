@@ -1,3 +1,12 @@
+""""
+Owen Duddles 15099261
+Narek Wartanian 14787148
+This file runs the custom made GUI and initializes neccesary
+threads that will run the tournament in the background and will
+plot the results in a graph. The GUI is also able to change the parameters
+that can be found in parameters.json.
+
+"""
 import sys
 import json
 from PyQt5.QtWidgets import QApplication, QMainWindow
