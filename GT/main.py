@@ -25,27 +25,24 @@ class MainWindow(QMainWindow):
         self.ui.pushButton_2.clicked.connect(self.save)
 
     def start(self):
-        open("result.txt", "w")
-        self.thread = QThread()
+        with open("result.txt", "w") as _:
+            pass
         self.worker = Worker()
-        self.worker.moveToThread(self.thread)
-        self.thread.started.connect(self.worker.run)
-        self.worker.finished.connect(self.thread.quit)
         self.worker.finished.connect(self.worker.deleteLater)
-        self.thread.finished.connect(self.thread.deleteLater)
-        self.thread.start()
 
-        self.ui.widget.start_anim()
-        self.ui.pushButton.setEnabled(False)
-        self.ui.pushButton_2.setEnabled(False)
-
-        self.thread.finished.connect(
+        self.worker.finished.connect(
             lambda: self.ui.pushButton.setEnabled(True)
         )
-        self.thread.finished.connect(
+        self.worker.finished.connect(
             lambda: self.ui.pushButton_2.setEnabled(True)
         )
-        self.ui.widget.stop_anim()
+        self.worker.finished.connect(self.ui.widget.stop_anim)
+
+        self.worker.start()
+        self.ui.widget.start_anim()
+
+        self.ui.pushButton.setEnabled(False)
+        self.ui.pushButton_2.setEnabled(False)
 
     def save(self):
         with open("./parameters/parameters.json", "r") as f:
