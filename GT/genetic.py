@@ -16,6 +16,7 @@ class GenAlgorithm():
                            strats.inverse, strats.grudge,
                            strats.forgiving_grudge, strats.fair_game,
                            strats.tit4tat]
+        self.gen = 1
 
     def procreate(self, ruletable1:int, ruletable2:int):
         """Procreates two ruletables and returns their child as an integer.
@@ -61,6 +62,9 @@ class GenAlgorithm():
         best performing strategies in the poule procreate and as such poule
         is adjusted to contain the next generation"""
         results = battle.tournament(self.poule, self.diy_strats)
+        with open("result.txt", "a+") as f:
+            f.write(f"{self.gen},{results[0][0]}\n")
+        self.gen += 1
         half = int(np.floor(len(results) / 2))
         quarter = int(np.floor(len(results) / 4))
         to_procreate = [s for _, s in results[:quarter]]
@@ -94,7 +98,7 @@ class GenAlgorithm():
         self.poule = new_poule
 
 
-gen = GenAlgorithm()
-for _ in range(50):
-    gen.run_one_gen()
-print(battle.tournament(gen.poule, gen.diy_strats))
+# gen = GenAlgorithm()
+# for _ in range(50):
+#     gen.run_one_gen()
+# print(battle.tournament(gen.poule, gen.diy_strats))
