@@ -18,9 +18,13 @@ from genetic import GenAlgorithm
 class Worker(QThread):
     finished = pyqtSignal()
 
+    def __init__(self, generations):
+        super().__init__()
+        self.generations = generations
+
     def run(self):
         gen = GenAlgorithm()
-        for _ in range(50):
+        for _ in range(self.generations):
             gen.run_one_gen()
         self.finished.emit()
 
@@ -32,11 +36,12 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         self.ui.pushButton.clicked.connect(self.start)
         self.ui.pushButton_2.clicked.connect(self.save)
+        self.generations = self.ui.spinBox_11.value()
 
     def start(self):
         with open("result.txt", "w") as _:
             pass
-        self.worker = Worker()
+        self.worker = Worker(self.generations)
         self.worker.finished.connect(self.worker.deleteLater)
 
         self.worker.finished.connect(
@@ -62,6 +67,7 @@ class MainWindow(QMainWindow):
         x["payoff"]["10"] = [self.ui.spinBox_5.value(), self.ui.spinBox_6.value()]
         x["payoff"]["01"] = [self.ui.spinBox_8.value(), self.ui.spinBox_9.value()]
         x["payoff"]["11"] = [self.ui.spinBox_7.value(), self.ui.spinBox_10.value()]
+        self.generations = self.ui.spinBox_11.value()
         with open("./parameters/parameters.json", "w") as f:
             json.dump(x, f, indent=2)
 

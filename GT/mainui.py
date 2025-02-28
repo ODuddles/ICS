@@ -85,6 +85,14 @@ class Ui_MainWindow(object):
         self.label_6 = QtWidgets.QLabel(self.centralwidget)
         self.label_6.setGeometry(QtCore.QRect(550, 310, 51, 17))
         self.label_6.setObjectName("label_6")
+        self.label_7 = QtWidgets.QLabel(self.centralwidget)
+        self.label_7.setGeometry(QtCore.QRect(650, 60, 101, 20))
+        self.label_7.setObjectName("label_7")
+        self.spinBox_11 = QtWidgets.QSpinBox(self.centralwidget)
+        self.spinBox_11.setGeometry(QtCore.QRect(660, 80, 61, 26))
+        self.spinBox_11.setMaximum(500)
+        self.spinBox_11.setProperty("value", 50)
+        self.spinBox_11.setObjectName("spinBox_11")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -101,4 +109,5 @@ class Ui_MainWindow(object):
         self.label_4.setText(_translate("MainWindow", "B coop"))
         self.label_5.setText(_translate("MainWindow", "B def"))
         self.label_6.setText(_translate("MainWindow", " A def"))
+        self.label_7.setText(_translate("MainWindow", "Generations"))
 from mplwidget import mplwidget
