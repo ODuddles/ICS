@@ -57,9 +57,10 @@ def mutate(strat:int):
     with open('./parameters/parameters.json', 'r') as file:
         data = json.load(file)
 
-    nr_mutations = data["mutation_factor"]
+    mutation_chance = data["mutation_factor"]
 
-    index_arr = np.random.choice(len(list_form), nr_mutations, replace=False)
-    for i in index_arr:
-        list_form[i] = (list_form[i] + 1) % 2
+    for i in range(len(list_form)):
+        num = np.random.random()
+        if num < mutation_chance:
+            list_form[i] = (list_form[i] + 1) % 2
     return base_k_to_integer(list_form, 2)
