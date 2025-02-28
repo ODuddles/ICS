@@ -54,6 +54,7 @@ class MainWindow(QMainWindow):
         self.ui.spinBox_9.setValue(f)
         self.ui.spinBox_7.setValue(g)
         self.ui.spinBox_10.setValue(h)
+        self.ui.spinBox_12.setValue(x["iterationsPerGame"])
         self.generations = self.ui.spinBox_11.value()
 
     def start(self):
@@ -85,6 +86,7 @@ class MainWindow(QMainWindow):
         x["payoff"]["10"] = [self.ui.spinBox_5.value(), self.ui.spinBox_6.value()]
         x["payoff"]["01"] = [self.ui.spinBox_8.value(), self.ui.spinBox_9.value()]
         x["payoff"]["11"] = [self.ui.spinBox_7.value(), self.ui.spinBox_10.value()]
+        x["iterationsPerGame"] = self.ui.spinBox_12.value()
         self.generations = self.ui.spinBox_11.value()
         with open("./parameters/parameters.json", "w") as f:
             json.dump(x, f, indent=2)
