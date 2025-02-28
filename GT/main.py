@@ -36,6 +36,23 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         self.ui.pushButton.clicked.connect(self.start)
         self.ui.pushButton_2.clicked.connect(self.save)
+
+        with open("./parameters/parameters.json", "r") as file:
+            x = json.load(file)
+        self.ui.spinBox_2.setValue(x["pool_size"])
+        self.ui.spinBox_3.setValue(x["mutation_factor"])
+        a, b = x["payoff"]["00"]
+        c, d = x["payoff"]["10"]
+        e, f = x["payoff"]["01"]
+        g, h = x["payoff"]["01"]
+        self.ui.spinBox.setValue(a)
+        self.ui.spinBox_4.setValue(b)
+        self.ui.spinBox_5.setValue(c)
+        self.ui.spinBox_6.setValue(d)
+        self.ui.spinBox_8.setValue(e)
+        self.ui.spinBox_9.setValue(f)
+        self.ui.spinBox_7.setValue(g)
+        self.ui.spinBox_10.setValue(h)
         self.generations = self.ui.spinBox_11.value()
 
     def start(self):
