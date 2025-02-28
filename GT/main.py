@@ -45,7 +45,7 @@ class MainWindow(QMainWindow):
         a, b = x["payoff"]["00"]
         c, d = x["payoff"]["10"]
         e, f = x["payoff"]["01"]
-        g, h = x["payoff"]["01"]
+        g, h = x["payoff"]["11"]
         self.ui.spinBox.setValue(a)
         self.ui.spinBox_4.setValue(b)
         self.ui.spinBox_5.setValue(c)
