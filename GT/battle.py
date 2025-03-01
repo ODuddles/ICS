@@ -116,12 +116,17 @@ def tournament(poule:list, strategies:list):
 
     rounds = data["iterationsPerGame"]
 
+    strat_total = {}
+
     result = []
     for table_strat in poule:
         total_payoff_table = 0
         for strat_func in strategies:
-            payoff_table, _ =  battle(table_strat, strat_func, rounds)
+            payoff_table, payoff_strat = battle(table_strat, strat_func, rounds)
             total_payoff_table += payoff_table
+            if strat_func in strat_total:
+                strat_total[strat_func] += payoff_strat
+
         result.append((total_payoff_table, table_strat))
     result = sorted(result, key=lambda x: x[0], reverse=True)
     return result

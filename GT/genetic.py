@@ -73,6 +73,10 @@ class GenAlgorithm():
         with open("result.txt", "a+") as f:
             f.write(f"{self.gen},{results[0][0]}\n")
         self.gen += 1
+        with open("top20.txt", "w") as f:
+            for _, result in zip(self.poule, results):
+                f.write(f"{result[0]},{result[1]}\n")
+
         half = int(np.floor(len(results) / 2))
         quarter = int(np.floor(len(results) / 4))
         to_procreate = [s for _, s in results[:quarter]]

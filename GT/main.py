@@ -13,6 +13,10 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtCore import QThread, pyqtSignal
 from mainui import Ui_MainWindow
 from genetic import GenAlgorithm
+import battle
+import matplotlib
+import matplotlib.pyplot as plt
+matplotlib.use('Qt5Agg')
 
 
 class Worker(QThread):
@@ -79,12 +83,63 @@ class MainWindow(QMainWindow):
         )
         self.worker.finished.connect(self.ui.widget.stop_anim)
 
+        if self.ui.checkBox.isChecked():
+            self.worker.finished.connect(self.character_plot)
+
+        if self.ui.checkBox_2.isChecked():
+            self.worker.finished.connect(self.strategies_plot)
+
         self.worker.start()
         self.ui.widget.start_anim()
 
         self.ui.pushButton.setEnabled(False)
         self.ui.pushButton_2.setEnabled(False)
         self.ui.pushButton_3.setEnabled(True)
+
+    def character_plot(self):
+        data = open("top20.txt", "r").read()
+        lines = data.split("\n")
+        for line in lines:
+            if len(line) > 1:
+                score, bits = line.split(',')
+                formatted = [int(x) for x in format(int(bits), 'b')]
+                zeros = formatted.count(0)
+                ratio = zeros / len(formatted)
+                if ratio > 0.66:
+                    color = "green"
+                elif ratio < 0.33:
+                    color = "red"
+                else:
+                    color = "yellow"
+                plt.bar(str(bits), int(score), color=color)
+        plt.xticks(fontsize=7, rotation=45)
+        plt.title("Characteristics of the 20 top evolved strategies.")
+        plt.show()
+
+    def strategies_plot(self):
+        data = open("top20.txt", "r").read()
+        lines = data.split("\n")
+        _, bits = lines[0].split(',')
+        diy_strats = [int(bits), battle.strats.always_coop,
+                      battle.strats.always_defect,
+                      battle.strats.defect_last_two_moves_defect,
+                      battle.strats.defect_last_two_moves_coop,
+                      battle.strats.alternate, battle.strats.double_alternate,
+                      battle.strats.inverse, battle.strats.grudge,
+                      battle.strats.forgiving_grudge, battle.strats.fair_game,
+                      battle.strats.tit4tat]
+        resulting_dict = battle.everyone_v_everyone(diy_strats)
+        list_from_dict = list(resulting_dict.items())
+        results = sorted(list_from_dict, key=lambda x: x[1], reverse=True)
+        print(results)
+        first = results.pop(0)
+        plt.figure(figsize=(10, 6))
+        plt.bar(str(first[0]), int(first[1]))
+        for result in results:
+            plt.bar(str(result[0].__name__), int(result[1]))
+        plt.xticks(fontsize=7, rotation=45)
+        plt.title("Strategies plot")
+        plt.show()
 
     def save(self):
         with open("./parameters/parameters.json", "r") as f:

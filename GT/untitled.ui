@@ -27,8 +27,8 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>640</x>
-      <y>520</y>
+      <x>690</x>
+      <y>530</y>
       <width>101</width>
       <height>41</height>
      </rect>
@@ -82,8 +82,8 @@
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>640</x>
-      <y>370</y>
+      <x>690</x>
+      <y>390</y>
       <width>101</width>
       <height>41</height>
      </rect>
@@ -280,8 +280,8 @@
    <widget class="QPushButton" name="pushButton_3">
     <property name="geometry">
      <rect>
-      <x>640</x>
-      <y>440</y>
+      <x>690</x>
+      <y>460</y>
       <width>101</width>
       <height>41</height>
      </rect>
@@ -330,6 +330,32 @@
     </property>
     <property name="maximum">
      <double>1.000000000000000</double>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>400</y>
+      <width>121</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Character plot</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_2">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>430</y>
+      <width>141</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Strategies result</string>
     </property>
    </widget>
   </widget>
