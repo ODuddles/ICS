@@ -21,10 +21,13 @@ class Worker(QThread):
     def __init__(self, generations):
         super().__init__()
         self.generations = generations
+        self.running = True
 
     def run(self):
         gen = GenAlgorithm()
         for _ in range(self.generations):
+            if not self.running:
+                break
             gen.run_one_gen()
         self.finished.emit()
 
@@ -37,6 +40,7 @@ class MainWindow(QMainWindow):
         self.ui.pushButton.clicked.connect(self.start)
         self.ui.pushButton_2.clicked.connect(self.save)
         self.ui.pushButton_3.clicked.connect(self.reset)
+        self.ui.pushButton_3.setEnabled(False)
 
         with open("./parameters/parameters.json", "r") as file:
             x = json.load(file)
@@ -69,6 +73,10 @@ class MainWindow(QMainWindow):
         self.worker.finished.connect(
             lambda: self.ui.pushButton_2.setEnabled(True)
         )
+
+        self.worker.finished.connect(
+            lambda: self.ui.pushButton_3.setEnabled(False)
+        )
         self.worker.finished.connect(self.ui.widget.stop_anim)
 
         self.worker.start()
@@ -76,6 +84,7 @@ class MainWindow(QMainWindow):
 
         self.ui.pushButton.setEnabled(False)
         self.ui.pushButton_2.setEnabled(False)
+        self.ui.pushButton_3.setEnabled(True)
 
     def save(self):
         with open("./parameters/parameters.json", "r") as f:
@@ -92,11 +101,13 @@ class MainWindow(QMainWindow):
             json.dump(x, f, indent=2)
 
     def reset(self):
-        if self.worker.isRunning():
+        if self.worker and self.worker.isRunning():
+            self.worker.running = False
             self.worker.quit()
-
-        self.worker.deleteLater()
-        self.worker = None
+            self.worker.wait()
+            self.worker.deleteLater()
+            self.worker = None
+        self.ui.pushButton_3.setEnabled(False)
 
 
 app = QApplication(sys.argv)

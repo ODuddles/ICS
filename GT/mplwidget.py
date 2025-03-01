@@ -47,7 +47,8 @@ class mplwidget(QWidget):
                 ys.append(float(y))
 
         self.canvas.axes.clear()
-        self.canvas.axes.plot(xs, ys)
+        self.canvas.axes.plot(xs, ys, label="Random (Best version)")
+        self.canvas.axes.legend()
         self.canvas.axes.set_xlabel("Generation")
         self.canvas.axes.set_ylabel("Payoff")
         self.canvas.draw()
