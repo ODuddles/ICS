@@ -126,7 +126,7 @@ def fair_game(previous_opp: list, previous_self: list):
 """
 def tit4tat(previous_opp: list, previous_self: list):
     real = previous_opp[::-1]
-    if real[0]:
+    if real[0] == 1:
         return 1
     else:
         return 0

@@ -80,7 +80,7 @@ def battle(strategy_table, strategy_func, rounds, verbose=False):
             move_table = ruletable_arr[index_table]
         else:
             move_table = strategy_table(previous_moves_func,
-                                        previous_moves_func)
+                                        previous_moves_table)
         move_func = strategy_func(previous_moves_table, previous_moves_func)
 
         payoff_table, payoff_func = calculate_payoff(move_table, move_func,
@@ -166,6 +166,7 @@ diy_strats = [767474, strats.always_coop, strats.always_defect,
               strats.tit4tat]
 
 
+# print(battle(strats.tit4tat, strats.always_defect, 50))
 # resulting_dict = everyone_v_everyone(diy_strats)
 # list_from_dict = list(resulting_dict.items())
 # result = sorted(list_from_dict, key=lambda x: x[1], reverse=True)

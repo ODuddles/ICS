@@ -1,5 +1,5 @@
 {
-  "iterationsPerGame": 50,
+  "iterationsPerGame": 200,
   "payoff": {
     "00": [
       3,
