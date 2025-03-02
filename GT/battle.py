@@ -159,13 +159,13 @@ def everyone_v_everyone(strategies:list):
 
 diy_strats = [767474, strats.always_coop, strats.always_defect,
               strats.defect_last_two_moves_defect,
-              strats.defect_last_two_moves_coop,
+              strats.sneaky_tit,
               strats.alternate, strats.double_alternate,
-              strats.inverse, strats.grudge,
+              strats.random_move, strats.grudge,
               strats.forgiving_grudge, strats.fair_game,
               strats.tit4tat]
 
-
+print(battle(strats.sneaky_tit, strats.tit4tat, 50, verbose=True))
 # resulting_dict = everyone_v_everyone(diy_strats)
 # list_from_dict = list(resulting_dict.items())
 # result = sorted(list_from_dict, key=lambda x: x[1], reverse=True)

@@ -8,6 +8,8 @@ Each strategy receives two lists:
     previous_self: A list containing the previous moves of myself.
 """
 
+import numpy as np
+
 """
     Always cooperates with the opponent.
 """
@@ -36,9 +38,12 @@ def defect_last_two_moves_defect(previous_opp: list, previous_self: list):
     Looks at the last two moves of the opponent, if the moves are cooperation
     return a defection, else a cooperation is returned.
 """
-def defect_last_two_moves_coop(previous_opp: list, previous_self: list):
+def sneaky_tit(previous_opp: list, previous_self: list):
     real = previous_opp[::-1]
     if real[:2] == [0, 0]:
+        return 1
+
+    if real[0] == 1:
         return 1
     else:
         return 0
@@ -74,13 +79,8 @@ def double_alternate(previous_opp: list, previous_self: list):
 """
     Returns the inverse of the opponents previous move.
 """
-def inverse(previous_opp: list, previous_self: list):
-    real = previous_opp[::-1]
-    if real[0]:
-        return 0
-    else:
-        return 1
-
+def random_move(previous_opp: list, previous_self: list):
+    return np.random.randint(0, 2)
 
 """
     Once the oponnent returns a defect once, grudge will always
