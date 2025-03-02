@@ -166,7 +166,6 @@ diy_strats = [767474, strats.always_coop, strats.always_defect,
               strats.tit4tat]
 
 
-# print(battle(strats.tit4tat, strats.always_defect, 50))
 # resulting_dict = everyone_v_everyone(diy_strats)
 # list_from_dict = list(resulting_dict.items())
 # result = sorted(list_from_dict, key=lambda x: x[1], reverse=True)

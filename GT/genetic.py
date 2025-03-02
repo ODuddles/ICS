@@ -19,9 +19,10 @@ class GenAlgorithm():
         self.poule = self.create_random_strats()
         self.diy_strats = [strats.always_coop, strats.always_defect,
                            strats.defect_last_two_moves_defect,
-                           strats.defect_last_two_moves_coop,
+                        #    strats.defect_last_two_moves_coop,
                            strats.alternate, strats.double_alternate,
-                           strats.inverse, strats.grudge,
+                        #    strats.inverse,
+                           strats.grudge,
                            strats.forgiving_grudge, strats.fair_game,
                            strats.tit4tat]
         self.gen = 1

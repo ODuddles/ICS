@@ -124,8 +124,10 @@ class MainWindow(QMainWindow):
                       battle.strats.always_defect,
                       battle.strats.defect_last_two_moves_defect,
                     #   battle.strats.defect_last_two_moves_coop,
-                      battle.strats.alternate, battle.strats.double_alternate,
-                      battle.strats.inverse, battle.strats.grudge,
+                      battle.strats.alternate,
+                      battle.strats.double_alternate,
+                    #   battle.strats.inverse,
+                      battle.strats.grudge,
                       battle.strats.forgiving_grudge, battle.strats.fair_game,
                       battle.strats.tit4tat]
         resulting_dict = battle.everyone_v_everyone(diy_strats)
