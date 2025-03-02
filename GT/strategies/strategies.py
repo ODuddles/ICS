@@ -33,8 +33,8 @@ def defect_last_two_moves_defect(previous_opp: list, previous_self: list):
 
 
 """
-    Looks at the last two moves of the opponent, if the moves are deflections
-    return a cooperation, else a defect is returned.
+    Looks at the last two moves of the opponent, if the moves are cooperation
+    return a defection, else a cooperation is returned.
 """
 def defect_last_two_moves_coop(previous_opp: list, previous_self: list):
     real = previous_opp[::-1]

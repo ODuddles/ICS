@@ -123,7 +123,7 @@ class MainWindow(QMainWindow):
         diy_strats = [int(bits), battle.strats.always_coop,
                       battle.strats.always_defect,
                       battle.strats.defect_last_two_moves_defect,
-                      battle.strats.defect_last_two_moves_coop,
+                    #   battle.strats.defect_last_two_moves_coop,
                       battle.strats.alternate, battle.strats.double_alternate,
                       battle.strats.inverse, battle.strats.grudge,
                       battle.strats.forgiving_grudge, battle.strats.fair_game,
@@ -132,11 +132,14 @@ class MainWindow(QMainWindow):
         list_from_dict = list(resulting_dict.items())
         results = sorted(list_from_dict, key=lambda x: x[1], reverse=True)
         print(results)
-        first = results.pop(0)
+        # first = results.pop(0)
         plt.figure(figsize=(10, 6))
-        plt.bar(str(first[0]), int(first[1]))
+        # plt.bar(str(first[0]), int(first[1]))
         for result in results:
-            plt.bar(str(result[0].__name__), int(result[1]))
+            try:
+                plt.bar(str(result[0].__name__), int(result[1]))
+            except AttributeError:
+                plt.bar(str(result[0]), int(result[1]))
         plt.xticks(fontsize=7, rotation=45)
         plt.title("Strategies plot")
         plt.show()
