@@ -25,7 +25,8 @@ def always_defect(previous_opp: list, previous_self: list): return 1
     return a defection, else a cooperation is returned.
 """
 def defect_last_two_moves_defect(previous_opp: list, previous_self: list):
-    if previous_opp[:2:-1] == [1, 1]:
+    real = previous_opp[::-1]
+    if real[:2] == [1, 1]:
         return 1
     else:
         return 0
@@ -36,7 +37,8 @@ def defect_last_two_moves_defect(previous_opp: list, previous_self: list):
     return a cooperation, else a defect is returned.
 """
 def defect_last_two_moves_coop(previous_opp: list, previous_self: list):
-    if previous_opp[:2:-1] == [0, 0]:
+    real = previous_opp[::-1]
+    if real[:2] == [0, 0]:
         return 1
     else:
         return 0
@@ -46,7 +48,8 @@ def defect_last_two_moves_coop(previous_opp: list, previous_self: list):
     Alternates between cooperate and defect.
 """
 def alternate(previous_opp: list, previous_self: list):
-    if previous_self[::-1][0]:
+    real = previous_self[::-1]
+    if real[0]:
         return 0
     else:
         return 1
@@ -56,12 +59,13 @@ def alternate(previous_opp: list, previous_self: list):
     Alternates by looking at its own last two moves 0,0 -> 1,1 etc.
 """
 def double_alternate(previous_opp: list, previous_self: list):
-    if previous_self[::-1][0]:
-        if previous_self[:2:-1] == [1, 1]:
+    real = previous_self[::-1]
+    if real[0]:
+        if real[:2] == [1, 1]:
             return 0
         else:
             return 1
-    elif previous_self[:2:-1] == [0, 0]:
+    elif real[:2] == [0, 0]:
         return 1
     else:
         return 0
@@ -71,7 +75,8 @@ def double_alternate(previous_opp: list, previous_self: list):
     Returns the inverse of the opponents previous move.
 """
 def inverse(previous_opp: list, previous_self: list):
-    if previous_opp[::-1][0]:
+    real = previous_opp[::-1]
+    if real[0]:
         return 0
     else:
         return 1
@@ -94,7 +99,8 @@ def grudge(previous_opp: list, previous_self: list):
     in a row.
 """
 def forgiving_grudge(previous_opp: list, previous_self: list):
-    if 1 in previous_opp[:6:-1]:
+    real = previous_opp[::-1]
+    if 1 in real[:6]:
         return 1
     else:
         return 0
@@ -119,7 +125,8 @@ def fair_game(previous_opp: list, previous_self: list):
     for atleast 50%+ else it will defect.
 """
 def tit4tat(previous_opp: list, previous_self: list):
-    if previous_opp[::-1][0]:
+    real = previous_opp[::-1]
+    if real[0]:
         return 1
     else:
         return 0
