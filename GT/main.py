@@ -105,12 +105,15 @@ class MainWindow(QMainWindow):
                 formatted = [int(x) for x in format(int(bits), 'b')]
                 zeros = formatted.count(0)
                 ratio = zeros / len(formatted)
-                if ratio > 0.66:
+                # print(ratio)
+                if ratio > 0.75:
                     color = "green"
-                elif ratio < 0.33:
-                    color = "red"
+                elif ratio >= 0.5:
+                    color = "limegreen"
+                elif ratio >= 0.25:
+                    color = "orange"
                 else:
-                    color = "yellow"
+                    color = "red"
                 plt.bar(str(bits), int(score), color=color)
         plt.xticks(fontsize=7, rotation=45)
         plt.title("Characteristics of the 20 top evolved strategies.")
@@ -123,7 +126,7 @@ class MainWindow(QMainWindow):
         diy_strats = [int(bits), battle.strats.always_coop,
                       battle.strats.always_defect,
                       battle.strats.defect_last_two_moves_defect,
-                      battle.strats.random_move,
+                      battle.strats.eye_4_eye,
                       battle.strats.alternate,
                       battle.strats.double_alternate,
                       battle.strats.sneaky_tit,
@@ -133,10 +136,7 @@ class MainWindow(QMainWindow):
         resulting_dict = battle.everyone_v_everyone(diy_strats)
         list_from_dict = list(resulting_dict.items())
         results = sorted(list_from_dict, key=lambda x: x[1], reverse=True)
-        print(results)
-        # first = results.pop(0)
         plt.figure(figsize=(10, 6))
-        # plt.bar(str(first[0]), int(first[1]))
         for result in results:
             try:
                 plt.bar(str(result[0].__name__), int(result[1]))

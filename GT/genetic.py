@@ -21,7 +21,7 @@ class GenAlgorithm():
                            strats.defect_last_two_moves_defect,
                            strats.sneaky_tit,
                            strats.alternate, strats.double_alternate,
-                           strats.random_move,
+                           strats.eye_4_eye,
                            strats.grudge,
                            strats.forgiving_grudge, strats.fair_game,
                            strats.tit4tat]
