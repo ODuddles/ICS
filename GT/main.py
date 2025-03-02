@@ -16,6 +16,8 @@ from genetic import GenAlgorithm
 import battle
 import matplotlib
 import matplotlib.pyplot as plt
+import os
+os.environ["QT_QPA_PLATFORM"] = "xcb"
 matplotlib.use('Qt5Agg')
 
 
@@ -170,7 +172,8 @@ class MainWindow(QMainWindow):
         self.ui.pushButton_3.setEnabled(False)
 
 
-app = QApplication(sys.argv)
-window = MainWindow()
-window.show()
-sys.exit(app.exec())
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
+    sys.exit(app.exec())
