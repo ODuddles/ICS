@@ -77,10 +77,26 @@ def double_alternate(previous_opp: list, previous_self: list):
 
 
 """
-    Returns the inverse of the opponents previous move.
+    When the opponent defects, this strategy defects as many times as the
+    opponent has defect up until this point in the game
 """
-def random_move(previous_opp: list, previous_self: list):
-    return np.random.randint(0, 2)
+def eye_4_eye(previous_opp: list, previous_self: list):
+    if previous_self[-1] == 1:
+        index = len(previous_self) - 1
+        nr_1_self = 0
+        while 1:
+            if previous_self[index] == 1:
+                nr_1_self += 1
+            else:
+                index += 1
+                break
+            index -= 1
+
+        if nr_1_self < previous_opp.count(1):
+            return 1
+    elif previous_opp[-1] == 1:
+        return 1
+    return 0
 
 """
     Once the oponnent returns a defect once, grudge will always
