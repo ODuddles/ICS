@@ -38,7 +38,7 @@ def defect_last_two_moves_defect(previous_opp: list, previous_self: list):
     Looks at the last two moves of the opponent, if the moves are cooperation
     return a defection, else a cooperation is returned.
 """
-def sneaky_tit(previous_opp: list, previous_self: list):
+def sneaky_tit4tat(previous_opp: list, previous_self: list):
     real = previous_opp[::-1]
     if real[:2] == [0, 0]:
         return 1
@@ -99,7 +99,7 @@ def eye_4_eye(previous_opp: list, previous_self: list):
     return 0
 
 """
-    Once the oponnent returns a defect once, grudge will always
+    Once the opponent returns a defect once, grudge will always
     return a grudge from that point on.
 """
 def grudge(previous_opp: list, previous_self: list):
@@ -111,7 +111,7 @@ def grudge(previous_opp: list, previous_self: list):
 
 """
     The same as grudge, but this time the function will forgive the
-    opponnent if het makes up to the function by not defecting 5 times
+    opponent if het makes up to the function by not defecting 5 times
     in a row.
 """
 def forgiving_grudge(previous_opp: list, previous_self: list):
@@ -123,7 +123,7 @@ def forgiving_grudge(previous_opp: list, previous_self: list):
 
 
 """
-    This strategy will cooperate as long as the oponnent cooperates
+    This strategy will cooperate as long as the opponent cooperates
     for atleast 50%+ else it will defect.
 """
 def fair_game(previous_opp: list, previous_self: list):

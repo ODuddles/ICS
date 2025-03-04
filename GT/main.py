@@ -131,7 +131,7 @@ class MainWindow(QMainWindow):
                       battle.strats.eye_4_eye,
                       battle.strats.alternate,
                       battle.strats.double_alternate,
-                      battle.strats.sneaky_tit,
+                      battle.strats.sneaky_tit4tat,
                       battle.strats.grudge,
                       battle.strats.forgiving_grudge, battle.strats.fair_game,
                       battle.strats.tit4tat]
