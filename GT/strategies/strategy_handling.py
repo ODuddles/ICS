@@ -7,7 +7,6 @@ integer representation to list representation.
 """
 import numpy as np
 import json
-np.random.seed(232005)
 
 def decimal_to_base_k(n:int, k:int):
     """Converts a given decimal (i.e. base-10 integer) to a list containing the

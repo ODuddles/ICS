@@ -11,7 +11,6 @@ import json
 import strategies.strategy_handling as strats_handl
 import strategies.strategies as strats
 import numpy as np
-np.random.seed(232005)
 
 class GenAlgorithm():
     def __init__(self):

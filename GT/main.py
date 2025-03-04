@@ -17,6 +17,7 @@ import battle
 import matplotlib
 import matplotlib.pyplot as plt
 import os
+import numpy as np
 os.environ["QT_QPA_PLATFORM"] = "xcb"
 matplotlib.use('Qt5Agg')
 
@@ -24,12 +25,15 @@ matplotlib.use('Qt5Agg')
 class Worker(QThread):
     finished = pyqtSignal()
 
-    def __init__(self, generations):
+    def __init__(self, generations, seed):
         super().__init__()
         self.generations = generations
+        self.seed = seed
         self.running = True
 
     def run(self):
+        print(self.seed)
+        np.random.seed(self.seed)
         gen = GenAlgorithm()
         for _ in range(self.generations):
             if not self.running:
@@ -66,11 +70,12 @@ class MainWindow(QMainWindow):
         self.ui.spinBox_10.setValue(h)
         self.ui.spinBox_12.setValue(x["iterationsPerGame"])
         self.generations = self.ui.spinBox_11.value()
+        self.seed = self.ui.spinBox_13.value()
 
     def start(self):
         with open("result.txt", "w") as _:
             pass
-        self.worker = Worker(self.generations)
+        self.worker = Worker(self.generations, self.seed)
         self.worker.finished.connect(self.worker.deleteLater)
 
         self.worker.finished.connect(
@@ -159,6 +164,7 @@ class MainWindow(QMainWindow):
         x["payoff"]["11"] = [self.ui.spinBox_7.value(), self.ui.spinBox_10.value()]
         x["iterationsPerGame"] = self.ui.spinBox_12.value()
         self.generations = self.ui.spinBox_11.value()
+        self.seed = self.ui.spinBox_13.value()
         with open("./parameters/parameters.json", "w") as f:
             json.dump(x, f, indent=2)
 
