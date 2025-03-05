@@ -103,7 +103,7 @@ class GenAlgorithm():
                                                 size=1)[0]
                 child = self.procreate(table, other_parent)
                 child = strats_handl.mutate(child)
-                new_strats.append(child)
+                new_poule.append(child)
 
         if len(new_poule) > len(results):
             print("A new generation is larger than the previous")
