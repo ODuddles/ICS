@@ -81,18 +81,17 @@ class GenAlgorithm():
         quarter = int(np.floor(len(results) / 4))
         to_procreate = [s for _, s in results[:quarter]]
 
-
         new_strats = []
         for table in to_procreate:
             to_procreate_not_self = to_procreate.copy()
             to_procreate_not_self.remove(table)
-            for _ in range(4):
+            for _ in range(3):
                 other_parent = np.random.choice(to_procreate_not_self, size=1)[0]
                 child = self.procreate(table, other_parent)
                 child = strats_handl.mutate(child)
                 new_strats.append(child)
 
-        new_poule = new_strats
+        new_poule = new_strats + to_procreate
         if len(new_poule) < len(results):
             for _ in range(len(results) - len(new_poule)):
                 table = np.random.choice(to_procreate_not_self, size=1)[0]

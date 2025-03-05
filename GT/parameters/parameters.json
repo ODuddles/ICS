@@ -1,5 +1,5 @@
 {
-  "iterationsPerGame": 200,
+  "iterationsPerGame": 50,
   "payoff": {
     "00": [
       3,
@@ -18,7 +18,7 @@
       1
     ]
   },
-  "mutation_factor": 0.1,
+  "mutation_factor": 0.05,
   "history_len": 2,
   "pool_size": 20
 }
