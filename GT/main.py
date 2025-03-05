@@ -23,6 +23,7 @@ os.environ["QT_QPA_PLATFORM"] = "xcb"
 matplotlib.use('Qt5Agg')
 
 
+# This is the worker thread that, handles the live plot.
 class Worker(QThread):
     finished = pyqtSignal()
 
@@ -42,6 +43,7 @@ class Worker(QThread):
         self.finished.emit()
 
 
+# The main GUI window that will load in.
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -72,6 +74,8 @@ class MainWindow(QMainWindow):
         self.generations = self.ui.spinBox_11.value()
         self.seed = self.ui.spinBox_13.value()
 
+    # This is the function that will call all the neccessary,
+    # functions to make sure the live plot is plotted correctly.
     def start(self):
         with open("result.txt", "w") as _:
             pass
@@ -103,6 +107,7 @@ class MainWindow(QMainWindow):
         self.ui.pushButton_2.setEnabled(False)
         self.ui.pushButton_3.setEnabled(True)
 
+    # The function that will handle the character plot
     def character_plot(self):
         data = open("top20.txt", "r").read()
         lines = data.split("\n")
@@ -112,7 +117,6 @@ class MainWindow(QMainWindow):
                 formatted = [int(x) for x in format(int(bits), 'b')]
                 zeros = formatted.count(0)
                 ratio = zeros / len(formatted)
-                # print(ratio)
                 if ratio > 0.75:
                     color = "green"
                 elif ratio >= 0.5:
@@ -127,6 +131,7 @@ class MainWindow(QMainWindow):
         plt.title(f"Characteristics of the {len(lines) - 1} top evolved strategies.")
         plt.show()
 
+    # The function that will handle the strategies plot.
     def strategies_plot(self):
         data = open("top20.txt", "r").read()
         lines = data.split("\n")
@@ -156,6 +161,8 @@ class MainWindow(QMainWindow):
         plt.title("Strategies plot")
         plt.show()
 
+    # The function that will make sure that all the parameters
+    # are saved in parameters.json.
     def save(self):
         with open("./parameters/parameters.json", "r") as f:
             x = json.load(f)
@@ -171,6 +178,7 @@ class MainWindow(QMainWindow):
         with open("./parameters/parameters.json", "w") as f:
             json.dump(x, f, indent=2)
 
+    # The function that will handle the resetting of the plot.
     def reset(self):
         if self.worker and self.worker.isRunning():
             self.worker.running = False

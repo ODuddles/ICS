@@ -14,6 +14,8 @@ import matplotlib.animation as animation
 from matplotlib.figure import Figure
 
 
+# This is the main class that will initalize and actually
+# plot the live plot.
 class mplwidget(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -28,13 +30,17 @@ class mplwidget(QWidget):
         vertical_layout.addWidget(self.canvas)
         self.setLayout(vertical_layout)
 
+    # Starts the animation
     def start_anim(self):
         self.anim = animation.FuncAnimation(self.canvas.figure, self.animate, interval=100)
         self.canvas.draw()
 
+    # Stops the animation
     def stop_anim(self):
         self.anim = None
 
+    # The function that will be called everytime, to
+    # make the plot live.
     def animate(self, i):
         graph_data = open('./result.txt', 'r').read()
         lines = graph_data.split('\n')
