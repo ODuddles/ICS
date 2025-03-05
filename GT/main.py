@@ -18,6 +18,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import os
 import numpy as np
+import strategies.strategies as strats
 os.environ["QT_QPA_PLATFORM"] = "xcb"
 matplotlib.use('Qt5Agg')
 
@@ -130,16 +131,16 @@ class MainWindow(QMainWindow):
         data = open("top20.txt", "r").read()
         lines = data.split("\n")
         _, bits = lines[0].split(',')
-        diy_strats = [int(bits), battle.strats.always_coop,
-                      battle.strats.always_defect,
-                      battle.strats.defect_last_two_moves_defect,
-                      battle.strats.eye_4_eye,
-                      battle.strats.alternate,
-                      battle.strats.double_alternate,
-                      battle.strats.sneaky_tit4tat,
-                      battle.strats.grudge,
-                      battle.strats.forgiving_grudge, battle.strats.fair_game,
-                      battle.strats.tit4tat]
+        diy_strats = [int(bits), strats.always_coop,
+                      strats.always_defect,
+                      strats.defect_last_two_moves_defect,
+                      strats.eye_4_eye,
+                      strats.alternate,
+                      strats.double_alternate,
+                      strats.sneaky_tit4tat,
+                      strats.grudge,
+                      strats.forgiving_grudge, strats.fair_game,
+                      strats.tit4tat]
         resulting_dict = battle.everyone_v_everyone(diy_strats)
         list_from_dict = list(resulting_dict.items())
         results = sorted(list_from_dict, key=lambda x: x[1], reverse=True)

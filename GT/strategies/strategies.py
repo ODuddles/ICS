@@ -35,7 +35,7 @@ def defect_last_two_moves_defect(previous_opp: list, previous_self: list):
         return 0
 
 
-def sneaky_tit(previous_opp: list, previous_self: list):
+def sneaky_tit4tat(previous_opp: list, previous_self: list):
     """
         Looks at the last two moves of the opponent, if the moves are
         cooperation return a defection, else a cooperation is returned.
