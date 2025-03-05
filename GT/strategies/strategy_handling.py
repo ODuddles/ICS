@@ -8,7 +8,8 @@ integer representation to list representation.
 import numpy as np
 import json
 
-def decimal_to_base_k(n:int, k:int):
+
+def decimal_to_base_k(n: int, k: int):
     """Converts a given decimal (i.e. base-10 integer) to a list containing the
     base-k equivalant.
 
@@ -24,7 +25,8 @@ def decimal_to_base_k(n:int, k:int):
 
     return results
 
-def base_k_to_integer(array:list, k:int):
+
+def base_k_to_integer(array: list, k: int):
     """ Converts a given array representing a number in base k,
     back to a decimal number given a base k"""
     ans = 0
@@ -35,7 +37,8 @@ def base_k_to_integer(array:list, k:int):
         power += 1
     return int(ans)
 
-def integer_2_binary(num:int, supposed_len:int):
+
+def integer_2_binary(num: int, supposed_len: int):
     """returns the num as a binary array with length supposed_len"""
     ruletable_arr = decimal_to_base_k(num, 2)
     if len(ruletable_arr) > supposed_len:
@@ -46,7 +49,8 @@ def integer_2_binary(num:int, supposed_len:int):
                         ruletable_arr
     return ruletable_arr
 
-def mutate(strat:int):
+
+def mutate(strat: int):
     """This function adjusts a strategy strat by going to the binary form of
     the strategy and changing a few 0's to 1's and 1's to 0's. How many of
     these changes are made, is determined by the parameters.json file in the

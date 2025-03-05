@@ -12,6 +12,7 @@ import strategies.strategy_handling as strats_handl
 import strategies.strategies as strats
 import numpy as np
 
+
 class GenAlgorithm():
     def __init__(self):
         """Initializes the required elements to the genetic algorithm"""
@@ -26,7 +27,7 @@ class GenAlgorithm():
                            strats.tit4tat]
         self.gen = 1
 
-    def procreate(self, ruletable1:int, ruletable2:int):
+    def procreate(self, ruletable1: int, ruletable2: int):
         """Procreates two ruletables and returns their child as an integer.
         The ruletables are procreated by using the first half of one
         of the ruletables and the second half of the other. Who dominates
@@ -36,7 +37,7 @@ class GenAlgorithm():
 
         half = int(np.floor(len(ruletable1_arr) / 2))
 
-        bool = np.random.randint(0,2)
+        bool = np.random.randint(0, 2)
         if bool:
             child = ruletable1_arr[:half] + ruletable2_arr[half:]
         else:
@@ -49,7 +50,8 @@ class GenAlgorithm():
         return strats_handl.base_k_to_integer(child, 2)
 
     def create_random_strats(self):
-        """Returns a list of random strategies for the start of the algorithm"""
+        """Returns a list of random strategies for the start of the
+        algorithm"""
         strats = []
 
         with open('./parameters/parameters.json', 'r') as file:
@@ -77,7 +79,6 @@ class GenAlgorithm():
             for _, result in zip(self.poule, results):
                 f.write(f"{result[0]},{result[1]}\n")
 
-        half = int(np.floor(len(results) / 2))
         quarter = int(np.floor(len(results) / 4))
         to_procreate = [s for _, s in results[:quarter]]
 
@@ -86,7 +87,8 @@ class GenAlgorithm():
             to_procreate_not_self = to_procreate.copy()
             to_procreate_not_self.remove(table)
             for _ in range(3):
-                other_parent = np.random.choice(to_procreate_not_self, size=1)[0]
+                other_parent = np.random.choice(to_procreate_not_self,
+                                                size=1)[0]
                 child = self.procreate(table, other_parent)
                 child = strats_handl.mutate(child)
                 new_strats.append(child)
@@ -97,19 +99,13 @@ class GenAlgorithm():
                 table = np.random.choice(to_procreate_not_self, size=1)[0]
                 to_procreate_not_self = to_procreate.copy()
                 to_procreate_not_self.remove(table)
-                other_parent = np.random.choice(to_procreate_not_self, size=1)[0]
+                other_parent = np.random.choice(to_procreate_not_self,
+                                                size=1)[0]
                 child = self.procreate(table, other_parent)
                 child = strats_handl.mutate(child)
                 new_strats.append(child)
-
 
         if len(new_poule) > len(results):
             print("A new generation is larger than the previous")
             exit()
         self.poule = new_poule
-
-
-# gen = GenAlgorithm()
-# for _ in range(50):
-#     gen.run_one_gen()
-# print(battle.tournament(gen.poule, gen.diy_strats))

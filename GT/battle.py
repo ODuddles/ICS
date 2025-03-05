@@ -5,14 +5,14 @@ This file has the functions to handle a battle between 2 strategies.
 """
 import json
 import strategies.strategy_handling as strats_handl
-import strategies.strategies as strats
 
-def get_index(previous_moves_1:list, previous_moves_2:list,
-              moves_back:int):
+
+def get_index(previous_moves_1: list, previous_moves_2: list,
+              moves_back: int):
     """Based on the data tuple the according index in the strategy list is
     returned to determine the next move"""
-    table_input = previous_moves_1[-moves_back:] + \
-                  previous_moves_2[-moves_back:]
+    table_input = (previous_moves_1[-moves_back:] +
+                   previous_moves_2[-moves_back:])
 
     # To indicate the end of the normal options and the start of the inputs
     # when the game just starts
@@ -26,6 +26,7 @@ def get_index(previous_moves_1:list, previous_moves_2:list,
     # Regular case when the game is in progress for a while
     return strats_handl.base_k_to_integer(list(table_input), 2)
 
+
 def calculate_payoff(move1, move2, payoff_dict):
     """Calculates the payoff for each strat by comparing their moves and
     looking the payoff for them in the payoff dictionary"""
@@ -36,6 +37,7 @@ def calculate_payoff(move1, move2, payoff_dict):
 
     string = f"{move1}{move2}"
     return payoff_dict[string][0], payoff_dict[string][1]
+
 
 def battle(strategy_table, strategy_func, rounds, verbose=False):
     """This function executes the battle between a strategy table and strategy
@@ -56,7 +58,8 @@ def battle(strategy_table, strategy_func, rounds, verbose=False):
     supposed_n = 2 ** (2 * history_len) + 5
 
     if not callable(strategy_table):
-        ruletable_arr = strats_handl.integer_2_binary(strategy_table, supposed_n)
+        ruletable_arr = strats_handl.integer_2_binary(strategy_table,
+                                                      supposed_n)
 
     previous_moves_table = []
     previous_moves_func = []
@@ -96,13 +99,14 @@ def battle(strategy_table, strategy_func, rounds, verbose=False):
         if verbose:
             print(f"Round {round}")
             print(f"Move table = {move_table} and Move func = {move_func}")
-            print(f"Current Payoff table", total_payoff_table,
+            print("Current Payoff table", total_payoff_table,
                   "\n func:", total_payoff_func)
             print("")
 
     return total_payoff_table, total_payoff_func
 
-def tournament(poule:list, strategies:list):
+
+def tournament(poule: list, strategies: list):
     """This function runs a tournament by letting each strategy in the poule
     battle against all strategies in strategies. Strategies within the
     poule don't battle each other and strategies within the strategies variable
@@ -122,7 +126,8 @@ def tournament(poule:list, strategies:list):
     for table_strat in poule:
         total_payoff_table = 0
         for strat_func in strategies:
-            payoff_table, payoff_strat = battle(table_strat, strat_func, rounds)
+            payoff_table, payoff_strat = battle(table_strat, strat_func,
+                                                rounds)
             total_payoff_table += payoff_table
             if strat_func in strat_total:
                 strat_total[strat_func] += payoff_strat
@@ -131,7 +136,8 @@ def tournament(poule:list, strategies:list):
     result = sorted(result, key=lambda x: x[0], reverse=True)
     return result
 
-def everyone_v_everyone(strategies:list):
+
+def everyone_v_everyone(strategies: list):
     with open('./parameters/parameters.json', 'r') as file:
         data = json.load(file)
 
@@ -145,28 +151,14 @@ def everyone_v_everyone(strategies:list):
         strategies.remove(strat_1)
 
         for strat_2 in strategies:
-            payoff_1, payoff_2 =  battle(strat_1, strat_2, rounds)
-            if not strat_1 in results:
+            payoff_1, payoff_2 = battle(strat_1, strat_2, rounds)
+            if strat_1 not in results:
                 results[strat_1] = payoff_1
             else:
                 results[strat_1] += payoff_1
 
-            if not strat_2 in results:
+            if strat_2 not in results:
                 results[strat_2] = payoff_2
             else:
                 results[strat_2] += payoff_2
     return results
-
-# diy_strats = [964576, strats.always_coop, strats.always_defect,
-#               strats.defect_last_two_moves_defect,
-#               strats.sneaky_tit,
-#               strats.alternate, strats.double_alternate,
-#               strats.grudge, strats.eye_4_eye,
-#               strats.forgiving_grudge, strats.fair_game,
-#               strats.tit4tat]
-
-# # print(battle(strats.sneaky_tit, strats.tit4tat, 50, verbose=True))
-# resulting_dict = everyone_v_everyone(diy_strats)
-# list_from_dict = list(resulting_dict.items())
-# result = sorted(list_from_dict, key=lambda x: x[1], reverse=True)
-# print(result)
