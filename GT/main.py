@@ -122,6 +122,7 @@ class MainWindow(QMainWindow):
                 else:
                     color = "red"
                 plt.bar(str(bits), int(score), color=color)
+                plt.text(str(bits), int(score), score, size=6, ha='center')
         plt.xticks(fontsize=7, rotation=45)
         plt.title("Characteristics of the 20 top evolved strategies.")
         plt.show()
@@ -147,8 +148,10 @@ class MainWindow(QMainWindow):
         for result in results:
             try:
                 plt.bar(str(result[0].__name__), int(result[1]))
+                plt.text(str(result[0].__name__), int(result[1]), result[1], size=8, ha='center')
             except AttributeError:
                 plt.bar(str(result[0]), int(result[1]))
+                plt.text(str(result[0]), int(result[1]), result[1], size=8, ha='center')
         plt.xticks(fontsize=7, rotation=45)
         plt.title("Strategies plot")
         plt.show()
