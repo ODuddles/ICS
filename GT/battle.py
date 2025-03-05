@@ -138,6 +138,8 @@ def tournament(poule: list, strategies: list):
 
 
 def everyone_v_everyone(strategies: list):
+    """Runs a tournament where everyone in strategies goes up against
+    everyone else in strategies except themselves"""
     with open('./parameters/parameters.json', 'r') as file:
         data = json.load(file)
 
