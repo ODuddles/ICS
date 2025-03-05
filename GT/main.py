@@ -124,7 +124,7 @@ class MainWindow(QMainWindow):
                 plt.bar(str(bits), int(score), color=color)
                 plt.text(str(bits), int(score), score, size=6, ha='center')
         plt.xticks(fontsize=7, rotation=45)
-        plt.title("Characteristics of the 20 top evolved strategies.")
+        plt.title(f"Characteristics of the {len(lines) - 1} top evolved strategies.")
         plt.show()
 
     def strategies_plot(self):

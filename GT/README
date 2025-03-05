@@ -1,0 +1,18 @@
+#######################################################################
+The GUI can be run by running "main.py". In order to run the GUI
+PyQt5 must be installed by using "pip install PyQt5". Your Python
+installation must also contain: numpy, matplotlib, os, sys and json.
+
+The GUI will allow the user to generate a model that will make a live
+plot with the generations on the x-axis and the maximum payoff of that
+specific generation on the y-axis. The GUI also allows the user to change
+the parameters to their liking to experimemnt with different mutation factors,
+payoff tables, generation amounts, rounds per game, poule size and seed.
+
+The GUI also contains two check boxes: "Character plot" and "Strategies result"
+Character plot: when this option is checked, the "character" of the top 20 random
+strategies will be evaluated and plotted.
+
+Strategies result: Will run the best evolved random strategy against the 10 standard
+strategies in strategy.py. The strategies and their respective payoff will be plotted
+in the form of a bar graph.
