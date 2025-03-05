@@ -33,7 +33,6 @@ class Worker(QThread):
         self.running = True
 
     def run(self):
-        print(self.seed)
         np.random.seed(self.seed)
         gen = GenAlgorithm()
         for _ in range(self.generations):
